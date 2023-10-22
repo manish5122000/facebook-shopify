@@ -23,6 +23,9 @@ class YourAPIView(APIView):
 def facebookAouthredirect(req):
     print('ggggggggggggggggggggggggggggggggg')
     print(req)
+    data = str(req)
+    savedata = facebookresponce.objects.create(data=data)
+    return True
     # response = redirect(url)
 
 def facebookAouth(req):
@@ -32,7 +35,7 @@ def facebookAouth(req):
 
     base_url = "https://www.facebook.com/v17.0/dialog/oauth"
     client_id = "253343950955737"
-    redirect_uri = "https://74cf-2405-201-600b-1eca-9c9a-4332-a0e8-64b7.ngrok-free.app/connector/facebokredirect/"
+    redirect_uri = "https://shopbyte-93c07294e0e6.herokuapp.com/connector/facebokredirect/"
     state = '{"st": "state123abc", "ds": "123456789"}'
 
     params = {

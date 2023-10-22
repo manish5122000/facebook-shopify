@@ -8,7 +8,9 @@ import jsonfield
 class confi(models.Model):
     shop_name = models.CharField(default=False,max_length=1000)
 
-
+class facebookresponce(models.Model):
+    data = models.CharField(max_length=10000)
+    
 class Products(models.Model):
 
     _id = models.IntegerField(null = False)
