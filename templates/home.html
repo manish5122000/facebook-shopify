@@ -1,54 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Your Shopify App</title>
-  <link rel="stylesheet" href="https://sdks.shopifycdn.com/polaris/5.3.0/polaris.min.css">
-</head>
-<body>
-  <div class="Polaris-Page">
-    <div class="Polaris-Page-Header">
-      <div class="Polaris-Page-Header__MainContent">
-        <h1 class="Polaris-DisplayText">Your Shopify App</h1>
-      </div>
-    </div>
-    <div class="Polaris-Page-Layout">
-      <div class="Polaris-Page-Layout__AnnotatedSection">
-        <div class="Polaris-Card">
-          <div class="Polaris-Card__Header">
-            <h2 class="Polaris-Heading">Sections</h2>
-          </div>
-          <div class="Polaris-Card__Section">
-            <ul class="Polaris-List">
-              <li class="Polaris-List__Item"><a href="#section1" class="Polaris-Link">Section 1</a></li>
-              <li class="Polaris-List__Item"><a href="#section2" class="Polaris-Link">Section 2</a></li>
-              <li class="Polaris-List__Item"><a href="#section3" class="Polaris-Link">Section 3</a></li>
-              <li class="Polaris-List__Item"><a href="#section4" class="Polaris-Link">Section 4</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="Polaris-Page-Layout__Content">
-        <div id="section1">
-          <h2 class="Polaris-Heading">Section 1</h2>
-          <!-- Content for Section 1 goes here -->
-        </div>
-        <div id="section2">
-          <h2 class="Polaris-Heading">Section 2</h2>
-          <!-- Content for Section 2 goes here -->
-        </div>
-        <div id="section3">
-          <h2 class="Polaris-Heading">Section 3</h2>
-          <!-- Content for Section 3 goes here -->
-        </div>
-        <div id="section4">
-          <h2 class="Polaris-Heading">Section 4</h2>
-          <!-- Content for Section 4 goes here -->
-        </div>
-      </div>
-    </div>
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="https://sdks.shopifycdn.com/polaris/5.3.0/polaris.min.css">
+{% endblock css %}
+{% block title %}Bytelinkup{% endblock title %}
+{% block main-home %}
+
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pro in product%}
+        <tr>
+          <th scope="row">1</th>
+          <td>{{pro.title}}</td>
+          <td>{{pro.vendor}}</td>
+          <td>@mdo</td>
+        </tr>
+          {% if pro.vendor%}
+            {% for ad in pro.%}
+          <tr>
+            <th scope="row">1</th>
+            <td>{{pro.variant.title}}</td>
+            <td>{{pro.variant.product_id}}</td>
+            <td>@mdo</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+        
+      </tbody>
+    </table>
   </div>
 
   <!-- Include Shopify's JavaScript libraries -->
+  {% endblock main-home %}
+  {% block javascriptcode %}
+  
   <script src="https://cdn.shopify.com/shopifycloud/polaris/5.3.0/polaris.min.js"></script>
-</body>
-</html>
+  {% endblock javascriptcode %}
+

@@ -56,11 +56,17 @@ def required_data_app_shop(data,shop):
 
 def entry_user_details(shop_name,access_token):
     data = get_current_user(shop_name,access_token)
+    print("in entry user details")
+    print(data)
 
     if(data['errors']):
+        print("if ")
+
         return
     else:
+        print("entry in else")
         user = user_details.objects.create(user_id=data['user']['id'],shop_name = shop_name,marketplace={0:{data},1:{}} )
+        print(user)
         return
     
 @csrf_exempt
@@ -81,12 +87,15 @@ def getwebhook(req):
 
 def get_current_user(shop_name,access_token):
     url = 'https://'+shop_name+'/admin/api/2023-01/users/current.json'
+    print(url)
     header = {
         'Content-Type' : 'application/json',
         'X-Shopify-Access-Token' : access_token
     }
     r = requests.get(url = url, headers=header)
     data = r.json()
+    print("get current user ")
+    print(data)
     return data
 
 
@@ -104,29 +113,36 @@ def get_access_token(req):
     get_shop = checkInstallation(shop,data['access_token'])
     print(get_shop)
     if(get_shop):
+
         print("entry")
         # entry in user_details
     print(data['access_token'])
     # app_shop = required_data_app_shop(data,shop)
-    webhook = create_webhook(shop,data['access_token'])
-    print(webhook)
+    # webhook = create_webhook(shop,data['access_token'])
+    # print(webhook)
     dataa = get_bulk_product_from_shopify(shop,data['access_token'])
     if dataa["success"]:
-        entry_product = entry_product_container(dataa)
+        print("sucess in product container")
+        # entry_product = entry_product_container(dataa)
     else:
         dataa = get_bulk_product_from_shopify(shop,data['access_token'])
-
+    shop2 = str(shop)
+    substring = shop2.split('.')[0]
+    print(substring)
+    product_container = Products.objects.filter(vendor=substring)
+    print(product_container)
     # return redirect('https://50d5-2409-4063-431d-be37-1076-17ae-7ae-7dc.ngrok-free.app')
-    return "done"
+    return render(req,'home.html',{'product':product_container})
 def checkInstallation(shop_name,access_token):
     shop = user_details.objects.filter(shop_name=shop_name)
     print("user_details")
+    print(shop)
     if(shop):
         return True
     else:
+        print("in else")
         entry_user_details(shop_name,access_token)
         # user_details.objects.create()
-
         return False
     # print(shop)
     # return shop
