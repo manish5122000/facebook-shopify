@@ -28,7 +28,11 @@ def oauth_shopify(req):
     print('hello')
     response = redirect(url)
     return response
-
+def connectorloginview(req):
+    print(req)
+    saved = str(req)
+    savedata = facebookresponce.objects.create(data=saved,typee="direct")
+    return HttpResponse(req)
 class YourAPIView(APIView):
     def get(self, request):
         queryset = Products.objects.all()

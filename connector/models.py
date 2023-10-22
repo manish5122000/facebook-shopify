@@ -10,7 +10,9 @@ class confi(models.Model):
 
 class facebookresponce(models.Model):
     data = models.CharField(max_length=10000)
-    
+    typee = models.CharField(max_length=100,default="nott")
+    def __str__(self):
+        return self.typee 
 class Products(models.Model):
 
     _id = models.IntegerField(null = False)

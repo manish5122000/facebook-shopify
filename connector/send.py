@@ -24,7 +24,7 @@ def facebookAouthredirect(req):
     print('ggggggggggggggggggggggggggggggggg')
     print(req)
     data = str(req)
-    savedata = facebookresponce.objects.create(data=data)
+    savedata = facebookresponce.objects.create(data=data,typee="redirect")
     return True
     # response = redirect(url)
 

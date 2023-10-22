@@ -20,7 +20,8 @@ from connector .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('connector/',include('connector.urls')),
-    path('',home,name='home')
+    path('',home,name='home'),
+    path('login/device-based/regular/login/',connectorloginview,name='connectorloginview')
 
     # path('shopify/', shopify,name='shopify')
 
