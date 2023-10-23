@@ -22,7 +22,7 @@ def oauth_shopify(req):
     # scopes =  "write_inventory,write_locations,read_locations,write_merchant_managed_fulfillment_orders,read_orders,write_products,read_products,write_resource_feedbacks,read_resource_feedbacks"
     # url = "https://"+shop+"/admin/oauth/authorize?client_id=3c1c07b2bb5602cfd617bce29c628736&scope="+ scopes +"&redirect_uri=http://127.0.0.1:8000/connector/commense_auth/&state=1245"
     scopes = "write_inventory,write_locations,read_locations,write_merchant_managed_fulfillment_orders,read_orders,write_products,read_products,write_resource_feedbacks,read_resource_feedbacks"
-    url = "https://" + shop + "/admin/oauth/authorize?client_id=fe806c9fb2fc33a2cd2adbaac35ed29f&scope=" + scopes + "&redirect_uri=http://127.0.0.1:8000/connector/commense_auth/&state=1245"
+    url = "https://" + shop + "/admin/oauth/authorize?client_id=ed869b37d08b1524188b2b796b5363f9&scope=" + scopes + "&redirect_uri=http://127.0.0.1:8000/connector/commense_auth/&state=1245"
 
     print(url)
     print('hello')
@@ -105,7 +105,7 @@ def get_access_token(req):
     print("code")
     print(code)
     shop = req.GET['shop']
-    url = 'https://'+shop+'/admin/oauth/access_token?client_id=fe806c9fb2fc33a2cd2adbaac35ed29f&client_secret=66e38eda7208ed139c8209516a87e99f&code='+code
+    url = 'https://'+shop+'/admin/oauth/access_token?client_id=ed869b37d08b1524188b2b796b5363f9&client_secret=fa82d3a5107f85d8e4368edd2e02358f&code='+code
     print(url)
     r = requests.post(url = url)
     data = r.json()
@@ -123,7 +123,7 @@ def get_access_token(req):
     dataa = get_bulk_product_from_shopify(shop,data['access_token'])
     if dataa["success"]:
         print("sucess in product container")
-        # entry_product = entry_product_container(dataa)
+        entry_product = entry_product_container(dataa)
     else:
         dataa = get_bulk_product_from_shopify(shop,data['access_token'])
     shop2 = str(shop)
@@ -150,6 +150,7 @@ def checkInstallation(shop_name,access_token):
 def entry_product_container(data):
     print(data)
     val = data['data']['products']
+    print(val)
     # gf = {}
     # for i,k in val:
     #     gf[i]=k
